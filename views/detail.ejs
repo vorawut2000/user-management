@@ -1,0 +1,26 @@
+<% include layout.ejs %>
+
+<div class="container">
+    <h1><%= userData.title %></h1>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">User Name: <img src="./uploads/<%=userData.image%>" class="img-circle img-responsive" width="90"> </li>
+        <li class="list-group-item">User Name: <%=userData.username%></li>
+        <li class="list-group-item">Email: <%=userData.email%></li>
+        <li class="list-group-item">First Name: <%=userData.firstname%></li>
+        <li class="list-group-item">Last Name: <%=userData.lastname%></li>
+        <li class="list-group-item">Gender: <%=userData.gender%></li>
+        <li class="list-group-item">Birth Date: <%=userData.birth_date%></li>
+        <li class="list-group-item">Phone Number: <%=userData.phoneNumber%></li>
+        <li class="list-group-item">User Role: <%=userData.userRole%></li>
+    </ul>
+    <div>
+        <a class="btn btn-primary" href="/users/<%= userData._id%>/edit" role="button">Edit</a>
+        <form action="/users/deleteuser/<%=userData._id%>" method="post">
+            <button class="btn btn-danger" type="submit">DELETE</button>
+        </form>
+    </div>
+
+</div>
+</div>
+</body>
+</html>
