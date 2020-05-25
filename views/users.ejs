@@ -1,21 +1,10 @@
 <% include layout.ejs %>
-    <div class="container">
-        <nav>
-            <a href="/">firstPage |</a>
-            <a href="/users">User |</a>
-        </nav>
-        <form action="/users/search" method="post">
-            <input type="text" name="q" size="15" placeholder="find users" />
-            <input type="submit" value="find" class="btn"/>
-        </form>
-    </div>
         <br>
     <div class="container">
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Profile Picture</th>
-                <th scope="col">Role</th> 
+                <!-- <th scope="col">Profile Picture</th> -->
                 <!-- <th scope="col">id</th> -->
                 <th scope="col">Username</th>
                 <th scope="col">Name</th>
@@ -29,12 +18,6 @@
 
         <% for(let item of data) {%>
             <tr>
-                <td>
-                    <% if(item.image){%>                  
-                    <img src="./uploads/<%=item.image%>" class="img-fluid img-circle" width="90" height="90">      
-                    <%}%>          
-                </td>
-                <td><%= item.userRole %></td>
                 <!-- <td><%= item._id %></td> -->
 				<td><%= item.username %></td>
                 <td><%= item.firstname +" "+ item.lastname %></td>
@@ -43,8 +26,15 @@
                 <td><%= item.email %></td>
                 <td><%= item.phoneNumber %></td>
 
-                <td><a class="btn btn-primary" href="/users/<%= item._id %>">More Info</a></td>
-
+                <td>
+                    <a class="btn btn-primary" href="/users/<%= item._id%>/edit" role="button">Edit</a>
+                    <form action="/users/deleteuser/<%=item._id%>" method="post">
+                        <button class="btn btn-danger" type="submit">DELETE</button>
+                    </form>
+                </td>
+                
+                    
+            
             </tr>
             
         <%}  %>      

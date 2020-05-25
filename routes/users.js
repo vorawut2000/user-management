@@ -11,17 +11,17 @@ var upload = multer();
 router.use(express.static(__dirname+"/public/"));
 
 //2
-var storage = multer.diskStorage({
-  destination:"./public/uploads",
-  filename: (req, file, cb) => {
-    cb(null,file.fieldname+"_"+Date.now()+path.extname(file.originalname));
-  }
-});
+// var storage = multer.diskStorage({
+//   destination:"./public/uploads",
+//   filename: (req, file, cb) => {
+//     cb(null,file.fieldname+"_"+Date.now()+path.extname(file.originalname));
+//   }
+// });
 
 //3
-var upload = multer({
-  storage:storage
-});
+// var upload = multer({
+//   storage:storage
+// });
 
 /* GET users listing. */
 router.get('/',upload.single('file') ,function(req, res) {
@@ -60,7 +60,7 @@ router.post('/add',upload.single('file'), function(req,res){
     phoneNumber: req.body.phoneNumber,
     email:req.body.email,
     userRole: req.body.userRole,
-    image: req.file.filename
+    // image: req.file.filename
   }).save(function(err){
     if(err){
       res.json(err);
@@ -101,7 +101,7 @@ router.post('/:id',upload.single('file'), function(req, res){
       phoneNumber: req.body.phoneNumber,
       email:req.body.email,
       userRole: req.body.userRole,
-      image: req.file.filename
+      // image: req.file.filename
     }, function(err,dbUsers){
       if(err){
         res.json(err);
